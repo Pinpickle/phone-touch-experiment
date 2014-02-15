@@ -9,5 +9,5 @@ exports.index = function(req, res){
 };
 
 exports.view = function(req, res){
-  res.render('view', { title: 'Express' });
+  res.render('view', { title: "Touch Experiment", host: req.protocol + '://' + req.host });
 };
