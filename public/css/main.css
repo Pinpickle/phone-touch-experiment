@@ -1,0 +1,20 @@
+body,html {
+  padding: 0;
+  margin: 0;
+}
+
+.touch-canvas {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.touch-indicator {
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  margin-left: -5px;
+  margin-top: -5px;
+}
