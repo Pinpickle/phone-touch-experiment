@@ -3,18 +3,27 @@ body,html {
   margin: 0;
 }
 
-.touch-canvas {
+#container {
   width: 100%;
   height: 100%;
   position: absolute;
   top: 0;
   left: 0;
+  background: #4a1700;
+}
+
+#touch-element {
+  width: 100%;
+  height: 100%;
+  display: block;
+  
 }
 
 .touch-indicator {
-  width: 10px;
-  height: 10px;
+  width: 40px;
+  height: 40px;
   position: absolute;
-  margin-left: -5px;
-  margin-top: -5px;
+  margin-left: -20px;
+  margin-top: -20px;
+  background: #000;
 }

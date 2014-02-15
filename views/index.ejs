@@ -2,15 +2,21 @@
 <html>
   <head>
     <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/css/main.css' />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
   </head>
   <body>
-    <div class="touchCanvas" touch-action="none">
+    <div id="container">
+      <canvas id="touch-element" touch-action="none"></canvas>
+    </div>
+    
+    <div class="output">
+      
     </div>
   </body>
-  <script type="text/javascript">var mode = "client";</script>
+  <script type="text/javascript">var mode = "client", host = "<%- host %>"</script>
   <script type="text/javascript" src="js/pointerevents.min.js"></script>
-  <script type="text/javascript" src="js/socket.io.min.js"></script>
-  <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> -->
+  <script type="text/javascript" src="socket.io/socket.io.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
   <script type="text/javascript" src="js/main.js"></script>
 </html>
