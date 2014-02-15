@@ -20,12 +20,16 @@ $(document).ready(function() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     
     
+    
     ctx.strokeStyle = "#93cae3";
     ctx.lineWidth = "6";
     
     for (var i in pointers) {
       var pointer = pointers[i];
+      
       if (pointer) {
+        Math.seedrandom(pointer.from);
+        ctx.strokeStyle = "hsl(" + Math.random() * 300 + ",100%,50%)";
         ctx.beginPath();
         ctx.arc(pointer.x * windowWidth, pointer.y * windowHeight, 20, 0, Math.PI * 2);
         ctx.stroke();

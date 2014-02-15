@@ -20,6 +20,9 @@ exports.init = function(io) {
           callback(err);
           return;
         }
+        for (var i in p) {
+          p[i].from = socket.id;
+        }
         pointers = pointers.concat(p);
         callback(null, null);
       });
