@@ -13,7 +13,7 @@ $(document).ready(function() {
       canvas.height = windowHeight;
       
       pointers = [];
-      onUpdate();
+      //onUpdate();
     }
   };
   
@@ -26,6 +26,7 @@ $(document).ready(function() {
       }
     }
     socket.emit("pointers", pointersToSend);
+    setTimeout(onUpdate, 50);
   };
   
   var draw = function() {
@@ -57,7 +58,7 @@ $(document).ready(function() {
     //$("<div>", {class: "touch-indicator"}).css({left: e.x, top: e.y});;
     //pointer.appendTo(touchElement);
     
-    onUpdate();
+    //onUpdate();
   };
   
   var onPointerMove = function(e) {
@@ -70,7 +71,7 @@ $(document).ready(function() {
       pointer.y = e.y / windowHeight;
     }
     
-    onUpdate();
+    //onUpdate();
   };
   
   var onPointerUp = function(e) {
@@ -81,7 +82,7 @@ $(document).ready(function() {
       //pointer.remove();
       delete pointers[e.pointerId];
     }
-    onUpdate();
+    //onUpdate();
   };
   
   var socket = io.connect(host + "/client");
@@ -95,4 +96,5 @@ $(document).ready(function() {
   $(window).resize(resize);
   
   requestAnimFrame(draw);
+  onUpdate();
 });
