@@ -29,12 +29,47 @@ $(document).ready(function() {
       
       if (pointer) {
         Math.seedrandom(pointer.from);
-        ctx.strokeStyle = "hsl(" + Math.random() * 300 + ",100%,50%)";
-        ctx.beginPath();
-        ctx.arc(pointer.x * windowWidth, pointer.y * windowHeight, 20, 0, Math.PI * 2);
-        ctx.stroke();
+        pointer.colour = "hsl(" + Math.random() * 300 + ",100%,50%)";
+        pointer.newx = pointer.x * windowWidth;
+        pointer.newy = pointer.y * windowHeight;
       }
-    } 
+    }
+    
+    var i = 0, n = 0;
+    
+    for (i = 0; i < pointers.length; i ++) {
+      for (n = i; n < pointers.length; n ++) {
+        
+        var pointer1 = pointers[i], pointer2 = pointers[n];
+        if (pointer1.from !== pointer2.from) {
+          var dis = Math.pow(pointer1.x - pointer2.x, 2) + Math.pow(pointer1.y - pointer2.y, 2);
+          if (dis < 0.05) {
+            var grad = ctx.createLinearGradient(pointer1.newx, pointer1.newy, pointer2.newx, pointer2.newy);
+            grad.addColorStop(0, pointer1.colour);
+            grad.addColorStop(1, pointer2.colour);
+            ctx.strokeStyle = grad;
+            ctx.lineWidth = (1 - dis / 0.05) * 2;
+            ctx.beginPath();
+            ctx.moveTo(pointer1.newx, pointer1.newy);
+            ctx.lineTo(pointer2.newx, pointer2.newy);
+            ctx.stroke();
+          }
+        }
+      }
+    }
+    
+    for (var i in pointers) {
+      var pointer = pointers[i];
+      if (pointer) {
+        ctx.fillStyle = pointer.colour;
+        ctx.beginPath();
+        ctx.arc(pointer.newx, pointer.newy, 8, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+    
+    
+    
     requestAnimFrame(draw);
   };
   

@@ -89,6 +89,7 @@ $(document).ready(function() {
   touchElement.on('pointerdown', onPointerDown);
   touchElement.on('pointermove', onPointerMove);
   touchElement.on('pointerup', onPointerUp);
+  touchElement.on('pointercancel', onPointerUp);
   
   resize();
   $(window).resize(resize);

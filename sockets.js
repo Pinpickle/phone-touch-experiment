@@ -21,9 +21,11 @@ exports.init = function(io) {
           return;
         }
         for (var i in p) {
-          p[i].from = socket.id;
+          if (p[i]) {
+            p[i].from = socket.id;
+            pointers.push(p[i]);
+          }
         }
-        pointers = pointers.concat(p);
         callback(null, null);
       });
     }, function(err) {
