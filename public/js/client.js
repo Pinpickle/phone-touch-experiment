@@ -22,7 +22,8 @@ $(document).ready(function() {
     var pointersToSend = [];
     for (var i in pointers) {
       if (pointers[i]) {
-        pointersToSend.push(pointers[i]);
+        var pointer = pointers[i];
+        pointersToSend.push([pointer.x,pointer.y,i]);
       }
     }
     socket.emit("pointers", pointersToSend);

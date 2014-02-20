@@ -1,5 +1,6 @@
 var async = require('async');
-
+//Format of received socket: x,y,id
+//Format of sent socket: x,y,id,from
 exports.init = function(io) {
   io.of('/client').on("connection", function(socket) {
     console.log("Connection!");
@@ -22,7 +23,7 @@ exports.init = function(io) {
         }
         for (var i in p) {
           if (p[i]) {
-            p[i].from = socket.id;
+            p[i][p[i].length] = socket.id;
             pointers.push(p[i]);
           }
         }

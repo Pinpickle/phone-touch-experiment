@@ -23,15 +23,22 @@ $(document).ready(function() {
     
     ctx.strokeStyle = "#93cae3";
     ctx.lineWidth = "6";
-    
-    for (var i in pointers) {
-      var pointer = pointers[i];
+    var i = 0;
+    while (pointer = pointers[i++]) {
       
       if (pointer) {
         Math.seedrandom(pointer.from);
-        pointer.colour = "hsl(" + Math.random() * 300 + ",100%,50%)";
+        pointer.colour = "hsla(" + Math.random() * 300 + ",100%,50%," + pointer.opacity + ")";
         pointer.newx = pointer.x * windowWidth;
         pointer.newy = pointer.y * windowHeight;
+        
+        if (pointer.dead) {
+          pointer.opacity -= 0.1;
+          if (pointer.opacity <= 0) pointers.splice(--i, 1);
+        } else {
+          if (pointer.opacity < 1) pointer.opacity += 0.1;
+        }
+        
       }
     }
     
@@ -79,7 +86,44 @@ $(document).ready(function() {
   var socket = io.connect(host + "/view");
   
   socket.on('pointers', function(data) {
-    pointers = data;
+    var newPointers = [], i = 0, n, pointer, pointerNew, added;
+    while(pointerNew = data[i++]) {
+      n = 0;
+      added = false;
+      while(pointer = pointers[n++]) {
+        if ((pointer.id == pointerNew[2]) && (pointer.from == pointerNew[3])) {
+          pointer.x = pointerNew[0];
+          pointer.y = pointerNew[1];
+          pointer.dead = false;
+          added = true;
+          
+          pointers.splice(--n, 1);
+          
+          break;
+        } 
+      }
+      
+      if (!added) {
+        pointer = {
+          x: pointerNew[0],
+          y: pointerNew[1],
+          id: pointerNew[2],
+          from: pointerNew[3],
+          dead: false,
+          opacity: 0
+        }
+      }
+      
+      newPointers.push(pointer);
+    }
+    
+    i = 0;
+    while (pointer = pointers[i++]) {
+      pointer.dead = true;
+      newPointers.push(pointer);
+    }
+    
+    pointers = newPointers;
   });
   
   requestAnimFrame(draw);
