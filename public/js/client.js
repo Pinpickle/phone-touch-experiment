@@ -15,6 +15,8 @@ $(document).ready(function() {
       pointers = [];
       //onUpdate();
     }
+    
+    
   };
   
   var onUpdate = function() {
@@ -36,7 +38,7 @@ $(document).ready(function() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     
     
-    ctx.strokeStyle = "#93cae3";
+    ctx.strokeStyle = "#cff0ff";
     ctx.lineWidth = "6";
     
     for (var i in pointers) {
