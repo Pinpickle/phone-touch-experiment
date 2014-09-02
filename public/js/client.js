@@ -38,7 +38,7 @@ $(document).ready(function() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     
     
-    ctx.strokeStyle = "#cff0ff";
+    ctx.strokeStyle = "#94d9f8";
     ctx.lineWidth = "6";
     
     for (var i in pointers) {

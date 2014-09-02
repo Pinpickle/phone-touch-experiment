@@ -1,6 +1,6 @@
 $(document).ready(function() {
   var touchElement = $("#touch-element"), canvas = touchElement[0];
-  
+  var aspect = 1;
   var pointers = [];
 
   var resize = function() {
@@ -11,6 +11,9 @@ $(document).ready(function() {
       
       canvas.width = windowWidth;
       canvas.height = windowHeight;
+		
+			aspect = windowWidth / windowHeight;
+			console.log(aspect > 1 ? aspect : 1);
     }
   };
 
@@ -49,13 +52,14 @@ $(document).ready(function() {
         
         var pointer1 = pointers[i], pointer2 = pointers[n];
         if (pointer1.from !== pointer2.from) {
-          var dis = Math.pow(pointer1.x - pointer2.x, 2) + Math.pow(pointer1.y - pointer2.y, 2);
-          if (dis < 0.05) {
+					console.log((pointer1.x - pointer2.x) / (aspect > 1 ? aspect : 1), (pointer1.x - pointer2.x));
+          var dis = Math.pow((pointer1.newx - pointer2.newx) / windowHeight, 2) + Math.pow((pointer1.y - pointer2.y), 2);
+          if (dis < 0.08) {
             var grad = ctx.createLinearGradient(pointer1.newx, pointer1.newy, pointer2.newx, pointer2.newy);
             grad.addColorStop(0, pointer1.colour);
             grad.addColorStop(1, pointer2.colour);
             ctx.strokeStyle = grad;
-            ctx.lineWidth = (1 - dis / 0.05) * 2;
+            ctx.lineWidth = (1 - dis / 0.08) * 2;
             ctx.beginPath();
             ctx.moveTo(pointer1.newx, pointer1.newy);
             ctx.lineTo(pointer2.newx, pointer2.newy);
@@ -70,7 +74,7 @@ $(document).ready(function() {
       if (pointer) {
         ctx.fillStyle = pointer.colour;
         ctx.beginPath();
-        ctx.arc(pointer.newx, pointer.newy, 8, 0, Math.PI * 2);
+        ctx.arc(pointer.newx, pointer.newy, 12, 0, Math.PI * 2);
         ctx.fill();
       }
     }

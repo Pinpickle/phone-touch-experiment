@@ -1,10 +1,11 @@
 body,html {
   padding: 0;
   margin: 0;
+	
 }
 
 * {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'azo-sans-web', 'Open Sans', sans-serif;
   -webkit-user-select: none;
   -moz-user-select: -moz-none;
   -webkit-user-select: none;
@@ -18,7 +19,14 @@ body,html {
   position: absolute;
   top: 0;
   left: 0;
-  background: #bbb;
+  background: rgba(245,245,245,1);
+	background: -moz-radial-gradient(center, ellipse cover, rgba(245,245,245,1) 0%, rgba(235,235,235,1) 100%);
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, , color-stop(0%, rgba(245,245,245,1)), color-stop(100%, rgba(235,235,235,1)));
+	background: -webkit-radial-gradient(center, ellipse cover, rgba(245,245,245,1) 0%, rgba(235,235,235,1) 100%);
+	background: -o-radial-gradient(center, ellipse cover, rgba(245,245,245,1) 0%, rgba(235,235,235,1) 100%);
+	background: -ms-radial-gradient(center, ellipse cover, rgba(245,245,245,1) 0%, rgba(235,235,235,1) 100%);
+	background: radial-gradient(ellipse at center, rgba(245,245,245,1) 0%, rgba(235,235,235,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f5f5', endColorstr='#ebebeb', GradientType=1 );
 }
 
 #view-container {
@@ -27,7 +35,14 @@ body,html {
   position: absolute;
   top: 0;
   left: 0;
-  background: #fff;
+  background: rgba(245,245,245,1);
+	background: -moz-radial-gradient(center, ellipse cover, rgba(245,245,245,1) 0%, rgba(235,235,235,1) 100%);
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, , color-stop(0%, rgba(245,245,245,1)), color-stop(100%, rgba(235,235,235,1)));
+	background: -webkit-radial-gradient(center, ellipse cover, rgba(245,245,245,1) 0%, rgba(235,235,235,1) 100%);
+	background: -o-radial-gradient(center, ellipse cover, rgba(245,245,245,1) 0%, rgba(235,235,235,1) 100%);
+	background: -ms-radial-gradient(center, ellipse cover, rgba(245,245,245,1) 0%, rgba(235,235,235,1) 100%);
+	background: radial-gradient(ellipse at center, rgba(245,245,245,1) 0%, rgba(235,235,235,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f5f5', endColorstr='#ebebeb', GradientType=1 );
 }
 
 #touch-element {
@@ -46,11 +61,15 @@ body,html {
   font-size: 48px;
   height: 50px;
   line-height: 50px;
-  color: #fff;
   width: 100%;
   top: 50%;
   margin-top: -25px;
   text-align: center;
+	color: #ddd;
+	vertical-align: center;
+	text-transform: uppercase;
+	font-weight: 800;
+	letter-spacing: 0.2em;
 }
 
 .touch-indicator {
