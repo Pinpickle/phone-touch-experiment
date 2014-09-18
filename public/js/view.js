@@ -31,7 +31,7 @@ $(document).ready(function() {
       
       if (pointer) {
         Math.seedrandom(pointer.from);
-        pointer.colour = "hsla(" + Math.random() * 300 + ",100%,50%," + pointer.opacity + ")";
+        pointer.colour = "hsla(" + Math.random().toFixed(3) * 300 + ",100%,50%," + pointer.opacity.toFixed(3) + ")";
         pointer.newx = pointer.x * windowWidth;
         pointer.newy = pointer.y * windowHeight;
         
